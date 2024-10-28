@@ -15,15 +15,14 @@ To create a simple twitter clone (now known as X) using Ruby on Rails.
 
 ### Installation
 
-```sh
-$ cd twitter_clone
+```ruby
 $ bundle install
 $ rails db:migrate
 $ rails db:seed
 ```
 
 Start the Server
-```sh
+```ruby
 $ rails server
 ```
 
