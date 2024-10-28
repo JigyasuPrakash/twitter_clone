@@ -1,24 +1,35 @@
-# README
+# Twitter Clone
+[![GitHub issues](https://img.shields.io/github/issues/JigyasuPrakash/twitter_clone)](https://github.com/JigyasuPrakash/twitter_clone/issues) [![GitHub forks](https://img.shields.io/github/forks/JigyasuPrakash/twitter_clone)](https://github.com/JigyasuPrakash/twitter_clone/network) [![GitHub stars](https://img.shields.io/github/stars/JigyasuPrakash/twitter_clone)](https://github.com/JigyasuPrakash/twitter_clone/stargazers)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
+### Objective
+To create a simple twitter clone (now known as X) using Ruby on Rails.
 
-Things you may want to cover:
+### Tech Stack
+- Forntend
+    - HTML ERB
+- Backend
+    - Ruby on Rails
+- Database
+    - SQLite
 
-* Ruby version
+### Installation
 
-* System dependencies
+```sh
+$ cd twitter_clone
+$ bundle install
+$ rails db:migrate
+$ rails db:seed
+```
 
-* Configuration
+Start the Server
+```sh
+$ rails server
+```
 
-* Database creation
+Then visit [localhost]
 
-* Database initialization
+### Developer
+<a href="https://itsjigyasu.me">Jigyasu Prakash</a>
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[localhost]: <https://localhost:3000>
