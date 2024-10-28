@@ -1,0 +1,17 @@
+<nav style="display: flex; justify-content: space-between; padding: 10px; background-color: #f8f9fa;">
+  <div>
+    <%= link_to 'Home', root_path %> &nbsp; &nbsp;
+    <%= link_to 'My Tweets', my_tweets_path if user_signed_in? %>
+  </div>
+  <div>
+    <% if user_signed_in? %>
+      <div style="display: flex; gap: 10px;">
+        Welcome, <%= current_user.username %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
+      </div>
+    <% else %>
+      <%= link_to 'Sign In', new_user_session_path %> |
+      <%= link_to 'Sign Up', new_user_registration_path %>
+    <% end %>
+  </div>
+</nav>

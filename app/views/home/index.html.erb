@@ -1,0 +1,39 @@
+<h1>All Tweets</h1>
+<% @tweets.each do |tweet| %>
+  <div class="tweet-box" style="border: 1px solid #ccc; border-radius: 5px; padding: 15px; margin: 10px 0; background-color: #f9f9f9; display: flex;">
+    <div class="comments-section" style="flex: 1; margin-right: 20px;">
+      <p><strong><%= tweet.user.username %>:</strong> <%= tweet.content %></p>
+      <p class="tweet-time"><em>Published at: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></em></p>
+      <h4>Comments:</h4>
+        <ul>
+          <% tweet.comments.each do |comment| %>
+            <li><strong><%= comment.user.username %>:</strong> <%= comment.content %></li>
+          <% end %>
+        </ul>
+         <% if user_signed_in? %>
+          <%= form_with(model: [tweet, Comment.new], local: true) do |form| %>
+            <div class="mb-3">
+              <%= form.text_area :content, rows: 2, class: "form-control" %>
+            </div>
+            <%= form.submit "Comment", class: "btn btn-secondary" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="retweets-section" style="flex: 1;">
+        <% if user_signed_in? %>
+          <%= button_to 'Retweet', retweet_tweet_path(tweet), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+        <h4><%= tweet.retweet_count %> Retweets:</h4>
+        <ul>
+          <% tweet.get_recent_retweets.each do |retweet| %>
+            <li><strong><%= retweet.user.username %></strong> retweeted this <%= time_ago_in_words(retweet.created_at) %> ago</li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="pagination">
+  <%= paginate @tweets %>
+</div>

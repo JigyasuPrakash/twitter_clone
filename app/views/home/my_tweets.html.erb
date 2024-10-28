@@ -1,0 +1,33 @@
+<h1>My Tweets</h1>
+<%= form_with model: [Tweet.new], local: true do |form| %>
+  <div>
+    <%= form.text_area :content, rows: 3 %>
+  </div>
+  <div>
+    <%= form.submit "Create a new Tweet" %>
+  </div>
+<% end %>
+<br />
+<h2>Recent Tweets</h2>
+<% current_user.tweets.each do |tweet| %>
+  <div class="tweet-box" style="border: 1px solid #ccc; border-radius: 5px; padding: 15px; margin: 10px 0; background-color: #f9f9f9;">
+    <div class="comments-section" style="flex: 1; margin-right: 20px;">
+      <p><strong><%= tweet.user.username %>:</strong> <%= tweet.content %></p>
+      <p class="tweet-time"><em>Published at: <%= tweet.created_at.strftime("%B %d, %Y at %I:%M %p") %></em></p>
+      <p><em>Retweets: <b><%=tweet.retweet_count %></b></em></p>
+      <%= button_to 'Delete Tweet', tweet_path(tweet), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <h4>Comments:</h4>
+      <ul>
+        <% tweet.comments.each do |comment| %>
+          <li><strong><%= comment.user.username %>:</strong> <%= comment.content %></li>
+        <% end %>
+      </ul>
+      <%= form_with(model: [tweet, Comment.new], local: true) do |form| %>
+        <div class="mb-3">
+          <%= form.text_area :content, rows: 2, class: "form-control" %>
+        </div>
+        <%= form.submit "Comment", class: "btn btn-secondary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
